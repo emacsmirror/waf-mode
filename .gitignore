@@ -1,0 +1,10 @@
+#emacs
+*~
+[#]*[#]
+.\#*
+.emacs.desktop
+projectile-bookmarks.eld
+*.elc
+
+# Packaging
+.cask
