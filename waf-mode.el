@@ -108,6 +108,16 @@
    )
  )
 
+(defun waf-conditionally-enable ()
+  "Enable `waf-mode' only when a `wscript' file is present in project root."
+  (condition-case nil
+      (when (projectile-verify-file "wscript")
+        (waf-mode 1)
+        )
+    (error nil)
+    )
+  )
+
 
 ;;;###autoload
 (define-minor-mode waf-mode
