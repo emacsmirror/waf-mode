@@ -3,7 +3,7 @@
 ;; Author: Denys Valchuk <dvalchuk@gmail.com>
 ;; URL: https://bitbucket.org/dvalchuk/waf-mode
 ;; Version: 0.1.0
-;; Package-Requires: ((projectile "20151130.1039"))
+;; Package-Requires: ((projectile "0.13.0"))
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -24,9 +24,11 @@
 
 ;;; Commentary:
 ;;
-;; TODO Add commentary.
+;; A minor mode which allows quick building of Waf
+;; projects with a few short key sequences.
 ;;
 ;;; Code:
+
 
 (require 'projectile)
 
