@@ -39,11 +39,10 @@
   :link '(url-link :tag "Waf Documentation" "https://github.com/waf-project/waf")
   :link '(url-link :tag "Submit Waf Issue" "https://github.com/waf-project/waf/issues"))
 
-(defcustom waf-mode-keymap-prefix (kbd "C-c w")
+(defcustom waf-mode-keymap-prefix (kbd "C-b w")
   "Waf-mode keymap prefix."
   :group 'waf
   :type 'string)
-
 
 ;;; User setup functions
 (defun waf-setup-compile-buffer ()
