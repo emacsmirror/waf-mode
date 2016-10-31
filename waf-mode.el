@@ -129,8 +129,7 @@
   )
 
 ;;;###autoload
-(setq auto-mode-alist
-      (cons '("wscript" . python-mode) auto-mode-alist))
+(add-to-list 'auto-mode-alist '("wscript\\'" . python-mode))
 
 (provide 'waf-mode)
 ;;; waf-mode.el ends here
