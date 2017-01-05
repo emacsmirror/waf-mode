@@ -47,17 +47,6 @@
                  (const :tag "none"  "")
                  string))
 
-;;; User setup functions
-(defun waf-setup-compile-buffer ()
-  "Enables ansi-colors and scrolling in the compilation buffer."
-  (require 'ansi-color)
-  (add-hook 'compilation-filter-hook
-            (lambda ()
-              (when (eq major-mode 'compilation-mode)
-                (ansi-color-apply-on-region compilation-filter-start (point-max)))))
-  (setq-local compilation-scroll-output t))
-
-
 ;;; Internal functions
 (defun waf--run-build-cmd (cmd)
   "Call `waf CMD' in the root of the project."
