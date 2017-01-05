@@ -39,11 +39,13 @@
   :link '(url-link :tag "Waf Documentation" "https://github.com/waf-project/waf")
   :link '(url-link :tag "Submit Waf Issue" "https://github.com/waf-project/waf/issues"))
 
-;; TODO: set waf-mode-keymap-prefix  to nil and check on load (should be defined outside)
-(defcustom waf-mode-keymap-prefix (kbd "C-c f")
-  "Waf-mode keymap prefix."
+(defcustom waf-mode-keymap-prefix "\C-c^"
+  "Prefix for `waf-mode' commands."
   :group 'waf
-  :type 'string)
+  :type '(choice (const :tag "ESC"   "\e")
+                 (const :tag "C-c ^" "\C-c^" )
+                 (const :tag "none"  "")
+                 string))
 
 ;;; User setup functions
 (defun waf-setup-compile-buffer ()
