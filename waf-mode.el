@@ -124,7 +124,7 @@
   "Enable `waf-mode' only when a `wscript' file is present in project root."
   (ignore-errors
     (when (locate-dominating-file default-directory "wscript")
-        (waf-mode t))))
+        (waf-mode 1))))
 
 
 ;;;###autoload
