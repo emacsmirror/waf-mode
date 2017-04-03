@@ -3,7 +3,6 @@
 ;; Author: Denys Valchuk <dvalchuk@gmail.com>
 ;; URL: https://bitbucket.org/dvalchuk/waf-mode
 ;; Version: 0.1.0
-;; Package-Requires: ((projectile "0.13.0"))
 
 ;; This file is NOT part of GNU Emacs.
 
@@ -30,8 +29,6 @@
 ;;; Code:
 
 
-(require 'projectile)
-
 ;;; Customization
 (defgroup waf nil
   "Waf integration"
@@ -48,15 +45,21 @@
                  string))
 
 ;;; Internal functions
+(defun waf--project-root (&optional file)
+  "Return the waf project root for FILE, or for `default-directory' if not specified."
+  (or (locate-dominating-file (or file default-directory) "wscript")
+            (error "No wscript found")))
+
 (defun waf--run-build-cmd (cmd)
   "Call `waf CMD' in the root of the project."
-  (let* ((default-directory (projectile-project-root))
+  (let* ((waf-root (waf--project-root))
+         (default-directory waf-root)
          (cmd (concat "waf " cmd)))
     (save-some-buffers (not compilation-ask-about-save)
                        (lambda ()
-                         (projectile-project-buffer-p (current-buffer)
-                                                      default-directory)))
-    (compilation-start cmd)))
+                         (and default-directory
+                              (string-prefix-p default-directory waf-root))))
+        (compilation-start cmd)))
 
 
 ;;; User commands
@@ -122,9 +125,8 @@
 ;;;###autoload
 (defun waf-conditionally-enable ()
   "Enable `waf-mode' only when a `wscript' file is present in project root."
-  (ignore-errors
-    (when (locate-dominating-file default-directory "wscript")
-        (waf-mode 1))))
+  (when (ignore-errors (waf--project-root))
+        (waf-mode 1)))
 
 
 ;;;###autoload
